@@ -1530,6 +1530,8 @@ static ExitCode StartInternal(int argc, char** argv) {
   if (!LoadSnapshotData(&snapshot_data)) {
     return ExitCode::kStartupSnapshotFailure;
   }
+
+  // lucien: 事件循环开始 
   NodeMainInstance main_instance(snapshot_data,
                                  uv_default_loop(),
                                  per_process::v8_platform.Platform(),
@@ -1540,6 +1542,7 @@ static ExitCode StartInternal(int argc, char** argv) {
 
 int Start(int argc, char** argv) {
 #ifndef DISABLE_SINGLE_EXECUTABLE_APPLICATION
+  // lucien: std::tie是C++标准库中的一个函数，它的主要作用是处理元组（tuple）和对元组进行解包
   std::tie(argc, argv) = sea::FixupArgsForSEA(argc, argv);
 #endif
   return static_cast<int>(StartInternal(argc, argv));

@@ -93,6 +93,7 @@ int wmain(int argc, wchar_t* wargv[]) {
 #else
 // UNIX
 
+// lucien: 程序入口
 int main(int argc, char* argv[]) {
   return node::Start(argc, argv);
 }
